@@ -1,0 +1,11 @@
+#series div {
+    display: inline-block;
+}
+
+#series div :first-child {
+    margin: 11px;
+}
+
+.title_series {
+    text-align: center;
+}

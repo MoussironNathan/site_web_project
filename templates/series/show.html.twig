@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Netfloux : {{ serie.title }}{% endblock %}
+
+{% block body %}
+    <a class="position-sticky" href="{{ path('series_index') }}" style="color:black">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 25 25">
+            <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+        </svg>
+    </a>
+    <h2 class="position-absolute top-8 start-50 translate-middle" style="display:inline-block;">{{ serie.title }}</h2>
+    <p class="position-absolute top-7 end-2" style="display:inline-block;">code IMDB : <a href="https://www.imdb.com/title/{{ serie.Imdb }}">{{ serie.Imdb }}</a></p>
+    <div class="d-flex justify-content-end mt-5">
+        <diV class="info w-50 p-3">
+            <h3>Trailer</h3>
+            <a href="{{ serie.youtubeTrailer }}">{{ serie.youtubeTrailer }}</a>
+            <h3 class="mt-5">Plot : </h3>
+            <p>{{ serie.plot }}</p>
+            <h3 class="mt-5">Release : </h3>
+            <p>This series was released in {{ serie.yearStart }}.</p>
+            <h3 class="mt-5">There are some links for seasons : </h3>
+            <div class="btn-group dropend">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Seasons
+                </button>
+                <ul class="dropdown-menu">
+                    {% for season in seasons %}
+                        <li><a class="dropdown-item" href="{{ path('season_show', {'id':season.id}) }}">Season {{ season.number }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <h3 class="mt-5">Awards : </h3>
+            <p>{{ serie.awards }}</p>
+        </div>
+        <div class="vr"></div>
+        <div class="img d-flex flex-column w-50 p-3">
+            <img width="500" style="margin-left:10vw" src="{{path('poster_series_show', {'id':serie.id})}}"/>
+        </div>
+    </div>
+{% endblock %}

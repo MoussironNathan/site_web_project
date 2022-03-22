@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Netfloux : Series{% endblock %}
+
+{% block nav %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block body %}
+    <h1 style="text-align:center">Series</h1>
+
+    <div>
+        {% for serie in series %}
+    
+            <div class="serie m-lg-4 d-inline-block shadow p-1 mb-5 bg-body rounded">
+                <p>Nom : <a href="{{ path('series_show', {'id': serie.id}) }}">{{ serie.title }}</a></p>
+                <img src="{{path('poster_series_show', {'id':serie.id})}}"/>
+            </div>
+    
+        {% else %}
+            <p colspan="11">no records found</p>
+        {% endfor %}
+    </div>
+    <div class="d-flex justify-content-center">
+        {% do series.setPageRange(2) %}
+        {{ knp_pagination_render(series, 'base/pagination.html.twig') }}
+    </div>
+
+    <style>
+        label{
+            display: none;
+        }
+    </style>
+{% endblock %}

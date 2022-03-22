@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1 style="text-align:center; margin-bottom:10vh">Register</h1>
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.name) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        <button type="submit" class="btn btn-dark">Register</button>
+    {{ form_end(registrationForm) }}
+
+    <style>
+        form {
+            margin-left: 19%;
+            width: 65vw;
+            padding: 2vw;
+            background-color: grey;
+            box-shadow: 10px 5px 10px black;
+        }
+        form label {
+            display: inherit;
+            text-align: center;
+        }
+        form div{
+            width: 50%;
+            margin-left: 23%;
+            margin-bottom: 2vh;
+        }
+        form button{
+            margin-left: 45%;
+        }
+    </style>
+{% endblock %}

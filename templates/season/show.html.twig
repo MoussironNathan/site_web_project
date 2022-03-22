@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Netfloux : {{ serie.title }}{% endblock %}
+
+{% block body %}
+    <a class="position-sticky" href="{{ path('series_show', {'id':serie.id}) }}" style="color:black">
+        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 25 25">
+            <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+        </svg>
+    </a>
+    <h2 class="position-absolute top-8 start-50 translate-middle" style="display:inline-block;">{{ serie.title }} - Season {{ season.number }}</h2>
+
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+              <th scope="col">Episode number</th>
+              <th scope="col">Title</th>
+              <th scope="col">Code IMDB</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for episode in episodes %}
+                <tr>
+                <th scope="row">{{ episode.number }}</th>
+                <td>{{ episode.title }}</td>
+                <td><a href="https://www.imdb.com/title/{{ serie.Imdb }}">{{ serie.Imdb }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
