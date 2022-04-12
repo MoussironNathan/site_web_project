@@ -30,20 +30,20 @@
                         </li>
                         {% if not app.user %}
                             <li class="nav-item">
-                                <a class="nav-link active mt-2" aria-current="page" href="{{ path('app_register') }}">Inscription</a>
+                                <a class="nav-link active mt-2" aria-current="page" href="{{ path('app_register') }}">Registration</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active mt-2" aria-current="page" href="{{ path('app_login') }}">Connexion</a>
+                                <a class="nav-link active mt-2" aria-current="page" href="{{ path('app_login') }}">Login</a>
                             </li>
                             <li class="nav-item">
-                                <p class="mt-3 ps-2">Compte: Non connecté</p>
+                                <p class="mt-3 ps-2">Account status: Not logged</p>
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link active mt-2" aria-current="page" href="{{ path('app_logout') }}">Déconnexion</a>
+                                <a class="nav-link active mt-2" aria-current="page" href="{{ path('app_logout') }}">Logout</a>
                             </li>
                             <li class="nav-item">
-                                <p class="mt-3 ps-2">Compte: {{ app.user }}</p>
+                                <p class="mt-3 ps-2">Account status: Connected as {{ app.user }}</p>
                             </li>
                         {% endif %}
                     </ul>

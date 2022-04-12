@@ -6,10 +6,16 @@
     <h1 style="text-align:center; margin-bottom:10vh">Register</h1>
 
     {{ form_start(registrationForm) }}
+
         {{ form_row(registrationForm.name) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
-        <button type="submit" class="btn btn-dark">Register</button>
+        <img src="captcha.jpg" />
+        {{ form_start(captchaForm) }}
+            {{ form_row(captchaForm.code) }}
+            <button type="submit" class="btn btn-dark">Register</button>
+        {{ form_end(captchaForm)}}
+
     {{ form_end(registrationForm) }}
 
     <style>
@@ -30,7 +36,11 @@
             margin-bottom: 2vh;
         }
         form button{
-            margin-left: 45%;
+            margin-left: 44%;
+        }
+        form img{
+            margin-top: 5vh;
+            margin-left: 41%;
         }
     </style>
 {% endblock %}
