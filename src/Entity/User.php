@@ -116,6 +116,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $series;
 
     /**
+     * @var string
+     */
+    private $code;
+
+    /**
      * Constructor
      */
     public function __construct()

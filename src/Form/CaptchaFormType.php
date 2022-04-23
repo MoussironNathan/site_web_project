@@ -22,6 +22,7 @@ class CaptchaFormType extends AbstractType
         $builder
             ->add('code', TextType::class, [
                 'label' => 'Captcha Code',
+                'mapped' => false,
                 'attr' => ['class' => 'form-control m-2',],
                 'required' => True
             ])

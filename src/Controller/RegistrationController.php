@@ -27,14 +27,16 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
-
         $captcha = new CaptchaBuilder;
         $captcha->build();
         $captcha->save('captcha.jpg');
+        $code = $captcha->getPhrase();
         $captchaform = $this->createForm(CaptchaFormType::class);
         $captchaform->handleRequest($request);
+
+        // code captcha = captcha précédent
         
-        if ($captchaform->isSubmitted() && $captcha->getPhrase()==$captchaform->get('captchaCode')) {
+        if ($captchaform->isSubmitted() && $code == $captchaform->get('code')) {
             if ($form->isSubmitted() && $form->isValid()) {
                 $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -53,7 +55,9 @@ class RegistrationController extends AbstractController
                 );
             }
         }
-
+        dump("pas bon");
+        dump($captcha->getPhrase());
+        dump($captchaform->get('code')->getViewData());
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
             'captchaForm' => $captchaform->createView(),
